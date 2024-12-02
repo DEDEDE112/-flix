@@ -1,0 +1,102 @@
+/* 全局樣式 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7e7db; /* 柔和背景色 */
+  color: #3e2723; /* 深咖啡色字體 */
+}
+
+/* 頭部樣式 */
+header {
+  background-color: #6d4c41; /* 咖啡色背景 */
+  color: #fbe9e7; /* 棕紅色字體 */
+  padding: 1rem 0;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: #fbe9e7; /* 棕紅色文字 */
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ffab91; /* 懸停效果，較亮的棕紅色 */
+}
+
+/* 主內容樣式 */
+main {
+  padding: 2rem;
+  text-align: center;
+}
+
+.welcome h2 {
+  font-size: 1.8rem;
+  color: #5d4037; /* 深棕色標題 */
+  margin-bottom: 0.5rem;
+}
+
+.welcome p {
+  font-size: 1.2rem;
+  color: #795548; /* 較淺的咖啡色 */
+}
+
+/* 頁尾樣式 */
+footer {
+  background-color: #4e342e; /* 深咖啡色背景 */
+  color: #fbe9e7; /* 棕紅色字體 */
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.movie-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  width: 200px;
+  display: inline-block;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-cover {
+  width: 100%;
+  border-radius: 8px;
+  height: auto;
+}
+
+#movie-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
