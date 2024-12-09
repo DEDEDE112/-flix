@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 13, title: '劇場版 排球少年!!垃圾場的決戰', genre: '動畫', description: '2024年，動畫《排球少年！！》將把「垃圾場決戰」搬上大銀幕，這場烏野對音駒的比賽被視為動畫最高潮，地位類似《灌籃高手》中的山王戰，讓粉絲迫不及待。', cover: '劇場版 排球少年!!垃圾場的決戰.jpg' },
         { id: 14, title: '劇場版 藍色監獄-EPIOSODE 凪-', genre: '動畫', description: '《藍色監獄》劇場版將呈現凪誠士郎與御影玲王的新互動，並帶來未曾展示的精彩比賽。這部作品不僅補充角色背景，也為粉絲帶來華麗的天才足球場面，是入坑的絕佳選擇。', cover: '劇場版 藍色監獄-EPIOSODE 凪-.jpg' },
         { id: 15, title: 'SPY x FAMILY CODE: White', genre: '動畫', description: '《間諜家家酒》劇場版將帶領粉絲走進佛傑一家的首次家族旅遊。這部電影延續了洛伊德、約兒、安妮亞和彭德的日常，展示他們在充滿驚險任務、校園趣事與溫馨爆笑的生活中，如何隱藏各自的秘密。', cover: 'SPY x FAMILY CODE.jpg' }
-
     ];
-    
 
     // 設定分類按鈕點擊事件
     categories.forEach(button => {
@@ -31,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 顯示對應分類的電影封面和介紹
+    // 顯示對應分類的電影封面和介紹，並加入收藏按鈕
     function displayMovies(genre) {
         movieDisplay.innerHTML = ''; // 清空之前的顯示
         const filteredMovies = movies.filter(movie => movie.genre === genre);
@@ -43,8 +41,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${movie.cover}" alt="${movie.title} 封面" class="movie-cover">
                 <h3>${movie.title}</h3>
                 <p>${movie.description}</p>
+                <button class="favorite-button" data-id="${movie.id}">收藏</button>
             `;
             movieDisplay.appendChild(movieCard);
         });
+
+        // 設定收藏按鈕的事件
+        movieDisplay.addEventListener('click', (event) => {
+            if (event.target.classList.contains('favorite-button')) {
+                const movieId = event.target.dataset.id;
+                addToFavorites(movieId);
+            }
+        });
+    }
+
+    // 收藏功能：將電影加入 localStorage
+    function addToFavorites(movieId) {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const selectedMovie = movies.find(movie => movie.id == movieId);
+
+        if (!favorites.some(movie => movie.id == movieId)) {
+            favorites.push(selectedMovie);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            alert(`${selectedMovie.title} 已加入收藏！`);
+        } else {
+            alert(`${selectedMovie.title} 已經在收藏清單中！`);
+        }
     }
 });
