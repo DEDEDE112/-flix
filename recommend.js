@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const movieList = document.getElementById('movie-list');
 
-    // 電影資料：十大推薦電影
+    // 確認 movieList 是否正確抓取到
+    if (!movieList) {
+        console.error('找不到 movie-list 元素，請檢查 HTML 結構！');
+        return;
+    }
+
+    // 電影資料：完整保留你提供的電影清單
     const movies = [
         { id: 1, title: '巨齒鯊', genre: '動作', description: '《巨齒鯊》講述一名退休的救援潛水員重回危險的海底，面對早已被認為滅絕的巨齒鯊，展開驚險任務，拯救被困的朋友脫離這兇猛巨獸的威脅。', cover: '巨齒鯊.jpg' },
         { id: 2, title: '功夫', genre: '動作', description: '《功夫》以1940年代的中國為背景，講述阿星這個小混混一心想加入稱霸香港的黑幫「斧頭幫」。斧頭幫成員以正式服裝示人，是一群冷酷無情的殺手，而阿星則在冒充身份中掙扎，夢想成為他們那樣的黑幫人物。', cover: '功夫.jpg' },
@@ -15,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 10, title: 'Cross：跨界任務', genre: '喜劇', description: '《Cross：跨界任務》描述曾是特務的家庭主夫被捲入危險的任務，同樣牽連其中的刑警妻子卻渾然不知他的過去，婚姻這下受到了終極考驗。', cover: 'Cross：跨界任務.jpg' }
     ];
 
-    // 動態生成電影清單
+    // 動態生成電影清單，保留介紹功能並新增收藏按鈕
     movies.forEach(movie => {
         const movieCard = document.createElement('div');
         movieCard.classList.add('movie-card');
@@ -23,7 +29,30 @@ document.addEventListener('DOMContentLoaded', () => {
             <img src="${movie.cover}" alt="${movie.title} 封面" class="movie-cover">
             <h3>${movie.title}</h3>
             <p>${movie.description}</p>
+            <button class="favorite-button" data-id="${movie.id}">收藏</button>
         `;
         movieList.appendChild(movieCard);
     });
+
+    // 點擊收藏按鈕
+    movieList.addEventListener('click', (event) => {
+        if (event.target.classList.contains('favorite-button')) {
+            const movieId = event.target.dataset.id;
+            addToFavorites(movieId);
+        }
+    });
+
+    // 收藏功能：將電影加入 localStorage
+    function addToFavorites(movieId) {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const selectedMovie = movies.find(movie => movie.id == movieId);
+
+        if (!favorites.some(movie => movie.id == movieId)) {
+            favorites.push(selectedMovie);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            alert(`${selectedMovie.title} 已加入收藏！`);
+        } else {
+            alert(`${selectedMovie.title} 已經在收藏清單中！`);
+        }
+    }
 });

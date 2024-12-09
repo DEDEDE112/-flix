@@ -100,3 +100,57 @@ footer {
   padding: 20px;
 }
 
+/* 收藏頁面樣式 */
+#favorite-movies {
+  padding: 2rem;
+  background-color: #fff5f5;
+}
+
+#favorite-movies h2 {
+  font-size: 1.8rem;
+  color: #6d4c41;
+  margin-bottom: 1rem;
+}
+
+#movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* 電影卡片樣式 */
+.movie-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  text-align: center;
+  width: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-cover {
+  width: 100%;
+  border-radius: 8px;
+}
+
+button.favorite-button {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #6d4c41;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button.favorite-button:hover {
+  background-color: #8d6e63;
+}
+
